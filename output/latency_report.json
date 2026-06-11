@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "num_pairs": 5,
+    "avg_total_ms": 4252.06,
+    "max_total_ms": 5336.57,
+    "min_total_ms": 3511.33,
+    "avg_data_load_ms": 82.25,
+    "avg_feature_extraction_ms": 3717.91,
+    "avg_inlier_ratio": 0.6115,
+    "pairs_meeting_50ms_target": 0
+  },
+  "per_frame": [
+    {
+      "pair_name": "0001",
+      "data_load_ms": 87.9,
+      "feature_extraction_ms": 3954.3,
+      "matching_ms": 537.75,
+      "ransac_ms": 1.23,
+      "homography_ms": 19.21,
+      "total_ms": 4600.39,
+      "inlier_ratio": 0.6571,
+      "num_inliers": 391
+    },
+    {
+      "pair_name": "0002",
+      "data_load_ms": 73.7,
+      "feature_extraction_ms": 4665.18,
+      "matching_ms": 565.06,
+      "ransac_ms": 1.55,
+      "homography_ms": 31.08,
+      "total_ms": 5336.57,
+      "inlier_ratio": 0.447,
+      "num_inliers": 333
+    },
+    {
+      "pair_name": "0003",
+      "data_load_ms": 87.88,
+      "feature_extraction_ms": 3175.42,
+      "matching_ms": 230.66,
+      "ransac_ms": 0.45,
+      "homography_ms": 16.92,
+      "total_ms": 3511.33,
+      "inlier_ratio": 0.5817,
+      "num_inliers": 89
+    },
+    {
+      "pair_name": "0004",
+      "data_load_ms": 85.95,
+      "feature_extraction_ms": 3379.25,
+      "matching_ms": 393.4,
+      "ransac_ms": 0.63,
+      "homography_ms": 19.23,
+      "total_ms": 3878.46,
+      "inlier_ratio": 0.6476,
+      "num_inliers": 294
+    },
+    {
+      "pair_name": "0005",
+      "data_load_ms": 75.81,
+      "feature_extraction_ms": 3415.4,
+      "matching_ms": 422.61,
+      "ransac_ms": 0.52,
+      "homography_ms": 19.22,
+      "total_ms": 3933.56,
+      "inlier_ratio": 0.7241,
+      "num_inliers": 399
+    }
+  ]
+}

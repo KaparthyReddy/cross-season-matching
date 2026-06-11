@@ -68,32 +68,37 @@ def export_superpoint_onnx(
     img_h: int = 480,
     img_w: int = 640,
 ) -> Optional[str]:
-    """
-    Exports SuperPoint to ONNX FP32.
-    Returns output path on success, None on failure.
-    """
     try:
         import torch
+        import torch.nn as nn
         from lightglue import SuperPoint
 
-        print("[ONNX] Exporting SuperPoint to ONNX...")
+        print("[ONNX] Exporting SuperPoint backbone to ONNX (FP32)...")
         device = torch.device("cpu")
-        model  = SuperPoint(max_num_keypoints=2048).eval().to(device)
+        sp = SuperPoint(max_num_keypoints=2048).eval().to(device)
 
-        dummy = torch.randn(1, 3, img_h, img_w, device=device)
+        class BackboneWrapper(nn.Module):
+            def __init__(self, model):
+                super().__init__()
+                self.encoder = model.net
+
+            def forward(self, x):
+                return self.encoder(x)
+
+        wrapper = BackboneWrapper(sp).eval()
+        dummy = torch.randn(1, 1, img_h, img_w, device=device)
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
 
         torch.onnx.export(
-            model,
+            wrapper,
             dummy,
             output_path,
             input_names=["image"],
-            dynamic_axes={"image": {2: "height", 3: "width"}},
-            opset_version=17,
+            opset_version=16,
+            do_constant_folding=True,
         )
-        print(f"[ONNX] SuperPoint exported → {output_path}")
+        print(f"[ONNX] SuperPoint backbone exported → {output_path}")
         return output_path
-
     except Exception as e:
         print(f"[ONNX] Export failed: {e}")
         return None

@@ -131,13 +131,13 @@ class SIFTMatcher:
 
 # ── Shared helpers ─────────────────────────────────────────────────────────────
 def _ransac_homography(
-    kpts0: np.ndarray, kpts1: np.ndarray, reproj_thresh: float = 3.0
+    kpts0: np.ndarray, kpts1: np.ndarray, reproj_thresh: float = 8.0
 ) -> Tuple[np.ndarray, np.ndarray, float]:
     t0 = time.perf_counter()
     if len(kpts0) < 4:
         return None, np.zeros(len(kpts0), dtype=bool), 0.0
 
-    H, mask = cv2.findHomography(kpts0, kpts1, cv2.RANSAC, reproj_thresh)
+    H, mask = cv2.findHomography(kpts0, kpts1, cv2.USAC_MAGSAC, reproj_thresh)
     t_ransac = (time.perf_counter() - t0) * 1000
 
     if mask is None:
