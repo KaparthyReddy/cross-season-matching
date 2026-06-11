@@ -11,8 +11,10 @@ pip install -r requirements.txt
 ```
 
 Place paired images:
-data/summer/0001.jpg ... 0005.jpg
-data/winter/0001.jpg ... 0005.jpg
+
+>data/summer/0001.jpg ... 0005.jpg
+
+>data/winter/0001.jpg ... 0005.jpg
 
 ## Run
 
